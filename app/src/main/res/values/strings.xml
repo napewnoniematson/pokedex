@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <string name="click_to_continue_text">Click to continue</string>
 </resources>
