@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.os.Bundle
 import com.example.pokedex.R
+import com.example.pokedex.view.adapters.PokemonAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -11,6 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
-//        pokemonRecyclerView.adapter = PokemonRVAdapter()
+        pokemonRecyclerView.adapter = PokemonAdapter()
     }
 }
