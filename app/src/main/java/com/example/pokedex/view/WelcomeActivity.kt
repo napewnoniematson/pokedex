@@ -1,5 +1,6 @@
 package com.example.pokedex.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -15,6 +16,10 @@ class WelcomeActivity : AppCompatActivity() {
         if (NetworkConnection.isConnected(applicationContext)) {
             // download data
             clickToContinueTextView.text = getString(R.string.click_to_continue_text)
+            clickToContinueTextView.setOnClickListener {
+                val intent: Intent = Intent(applicationContext, MainActivity::class.java)
+                startActivity(intent)
+            }
         } else {
             Toast.makeText(
                 applicationContext,
