@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Pokedex</string>
+
+    <string name="download_data_text">Downloading data. Please wait..</string>
+    <string name="no_network_connection_message_text">
+        No network connection. Turn it on and try again.
+    </string>
     <string name="click_to_continue_text">Click to continue</string>
+
 </resources>
