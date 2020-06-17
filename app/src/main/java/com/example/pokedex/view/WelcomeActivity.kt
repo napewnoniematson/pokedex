@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.pokedex.NetworkConnection
 import com.example.pokedex.R
+import com.example.pokedex.view.animations.ZoomCloseFarAnimator
 import kotlinx.android.synthetic.main.activity_welcome.*
 
 class WelcomeActivity : AppCompatActivity() {
@@ -16,6 +17,7 @@ class WelcomeActivity : AppCompatActivity() {
         if (NetworkConnection.isConnected(applicationContext)) {
             // download data
             clickToContinueTextView.text = getString(R.string.click_to_continue_text)
+            ZoomCloseFarAnimator().zoom(clickToContinueTextView)
             clickToContinueTextView.setOnClickListener {
                 val intent: Intent = Intent(applicationContext, MainActivity::class.java)
                 startActivity(intent)
