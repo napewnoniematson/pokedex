@@ -7,9 +7,11 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
+import com.example.pokedex.model.PokemonEntry
 import kotlinx.android.synthetic.main.pokemon_item.view.*
 
-class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
+class PokemonAdapter(private val pokemons: ArrayList<PokemonEntry>) :
+    RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         val cardView = LayoutInflater
@@ -18,18 +20,28 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
         return PokemonViewHolder(cardView)
     }
 
-    override fun getItemCount(): Int {
-        return 5
-    }
+    override fun getItemCount(): Int = pokemons.size
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-        val pokemonNumberNameText = "#00$position pokemon_$position"
-        holder.itemView.pokemonItemTextView.text = pokemonNumberNameText
+        val pokemonEntry: PokemonEntry = pokemons[position]
+        var pokemonIndexString = pokemonEntry.entry_number.toString()
+        pokemonIndexString = pokemonIndexString.padStart(3, '0')
+        val pokemonText = "#$pokemonIndexString ${pokemonEntry.pokemon_species.name.capitalize()}"
+        holder.itemView.pokemonItemTextView.text = pokemonText
+
         holder.itemView.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "position: $position", Toast.LENGTH_LONG)
+            Toast
+                .makeText(holder.itemView.context, "position: $position", Toast.LENGTH_LONG)
                 .show()
         }
 //        holder.itemView.pokemonItemImageView
+    }
+
+    fun updatePokemons(pokemons: List<PokemonEntry>) {
+        this.pokemons.apply {
+            clear()
+            addAll(pokemons)
+        }
     }
 
     class PokemonViewHolder(view: View) : RecyclerView.ViewHolder(view) {}
