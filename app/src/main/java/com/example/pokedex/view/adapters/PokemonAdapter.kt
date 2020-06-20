@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.pokedex.R
 import com.example.pokedex.model.PokemonEntry
 import kotlinx.android.synthetic.main.pokemon_item.view.*
@@ -34,7 +35,15 @@ class PokemonAdapter(private val pokemons: ArrayList<PokemonEntry>) :
                 .makeText(holder.itemView.context, "position: $position", Toast.LENGTH_LONG)
                 .show()
         }
-//        holder.itemView.pokemonItemImageView
+        val imageUrl =
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonEntry.entry_number}.png"
+
+        Glide
+            .with(holder.itemView.context)
+            .load(imageUrl)
+            .override(108,108)
+            .fitCenter()
+            .into(holder.itemView.pokemonItemImageView)
     }
 
     fun updatePokemons(pokemons: List<PokemonEntry>) {
