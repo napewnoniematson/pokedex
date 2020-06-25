@@ -23,13 +23,14 @@
             android:contentDescription="@string/pokemon_details_image_view_desc" />
 
         <include
+            android:id="@+id/pokemonDetailsStats"
             layout="@layout/pokemon_stats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
     <EditText
-        android:id="@+id/pokemon_details_description_text_view"
+        android:id="@+id/pokemonDetailsDescriptionEditText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:inputType="textMultiLine"
