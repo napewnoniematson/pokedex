@@ -11,5 +11,10 @@
     <string name="pokemon_item_text_view_text">#%1$d %2$s</string>
     <string name="pokemon_item_image_view_desc">Pokemon photo</string>
 
+    <string name="pokemon_details_image_view_desc">Pokemon photo</string>
+    <string name="pokemon_stats_health_points">HP</string>
+    <string name="pokemon_stats_attack_points">ATK</string>
+    <string name="pokemon_stats_default_value">0</string>
+
 
 </resources>
