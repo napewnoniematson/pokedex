@@ -1,5 +1,7 @@
 package com.example.pokedex.view.adapters
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pokedex.R
 import com.example.pokedex.model.PokemonEntry
+import com.example.pokedex.view.PokemonDetailsActivity
+import kotlinx.android.synthetic.main.activity_welcome.*
 import kotlinx.android.synthetic.main.pokemon_item.view.*
 
 class PokemonAdapter(private val pokemons: ArrayList<PokemonEntry>) :
@@ -31,9 +35,11 @@ class PokemonAdapter(private val pokemons: ArrayList<PokemonEntry>) :
         holder.itemView.pokemonItemTextView.text = pokemonText
 
         holder.itemView.setOnClickListener {
-            Toast
-                .makeText(holder.itemView.context, "position: $position", Toast.LENGTH_LONG)
-                .show()
+            val activity = holder.itemView.context as Activity
+            val intent: Intent = Intent(activity, PokemonDetailsActivity::class.java)
+            val pokemonIndex: Int = pokemonEntry.entry_number
+            intent.putExtra("POKEMON_DETAILS_ENTRY_NUMBER", pokemonIndex)
+            holder.itemView.context.startActivity(intent)
         }
         val imageUrl =
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonEntry.entry_number}.png"
