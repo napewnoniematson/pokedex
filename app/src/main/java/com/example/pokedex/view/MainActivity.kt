@@ -3,7 +3,10 @@ package com.example.pokedex.view
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
@@ -44,4 +47,26 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_action_bar, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId) {
+            R.id.about_info_menu_bar_button -> {
+                val infoDialog = AlertDialog.Builder(this).create()
+                infoDialog.apply {
+                    title = "About"
+                    setMessage("It is pokedex project with list of pokemon and their details. It is Mateusz Cypel educational project")
+                    setButton(AlertDialog.BUTTON_NEUTRAL, "OK") { dialog, _ ->
+                        dialog.dismiss()
+                        title = getString(R.string.app_name)
+                    }
+                    show()
+                }
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
 }
