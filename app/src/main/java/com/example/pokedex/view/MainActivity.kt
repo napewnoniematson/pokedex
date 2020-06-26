@@ -5,10 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 
 import com.example.pokedex.R
 import com.example.pokedex.view.adapters.PokemonAdapter
@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: PokemonAdapter
+    private var layoutManager: GridLayoutManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +32,9 @@ class MainActivity : AppCompatActivity() {
             ViewModelFactory(PokedexHelper(RetrofitBuilder.pokedexService))
         ).get(MainViewModel::class.java)
 
-
-        pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = PokemonAdapter(arrayListOf())
+        layoutManager = GridLayoutManager(this, 1)
+        pokemonRecyclerView.layoutManager = layoutManager
+        adapter = PokemonAdapter(arrayListOf(), layoutManager)
         pokemonRecyclerView.adapter = adapter
 
 
@@ -45,7 +46,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -53,20 +53,30 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId) {
-            R.id.about_info_menu_bar_button -> {
-                val infoDialog = AlertDialog.Builder(this).create()
-                infoDialog.apply {
-                    title = "About"
-                    setMessage("It is pokedex project with list of pokemon and their details. It is Mateusz Cypel educational project")
-                    setButton(AlertDialog.BUTTON_NEUTRAL, "OK") { dialog, _ ->
-                        dialog.dismiss()
-                        title = getString(R.string.app_name)
-                    }
-                    show()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.aboutInfoMenuBarButton -> {
+            val infoDialog = AlertDialog.Builder(this).create()
+            infoDialog.apply {
+                title = "About"
+                setMessage("It is pokedex project with list of pokemon and their details. It is Mateusz Cypel educational project")
+                setButton(AlertDialog.BUTTON_NEUTRAL, "OK") { dialog, _ ->
+                    dialog.dismiss()
+                    title = getString(R.string.app_name)
                 }
-                true
+                show()
             }
-            else -> super.onOptionsItemSelected(item)
+            true
         }
+        R.id.switchLayoutMenuBarButton -> {
+            if (layoutManager?.spanCount == 1) {
+                layoutManager?.spanCount = 3
+            } else {
+                layoutManager?.spanCount = 1
+            }
+            adapter.notifyItemRangeChanged(0, adapter.itemCount ?: 0)
+            //change icon for appropriate next layout
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
+    }
 }
