@@ -6,38 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".view.PokemonDetailsActivity">
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/pokemonDetailsImageView"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:contentDescription="@string/pokemon_details_image_view_desc"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/pokemonDetailsStats"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <include
+        android:id="@+id/pokemonDetailsStats"
+        layout="@layout/pokemon_stats"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/pokemonDetailsImageView"
+        app:layout_constraintTop_toTopOf="@+id/pokemonDetailsImageView" />
 
-        <ImageView
-            android:id="@+id/pokemonDetailsImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/pokemon_details_image_view_desc" />
-
-        <include
-            android:id="@+id/pokemonDetailsStats"
-            layout="@layout/pokemon_stats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/pokemonDetailsDescriptionEditText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:inputType="textMultiLine"
-        android:maxLines="10"
+    <TextView
+        android:id="@+id/pokemonDetailsDescriptionTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/pokemonDetailsStats" />
 </androidx.constraintlayout.widget.ConstraintLayout>
