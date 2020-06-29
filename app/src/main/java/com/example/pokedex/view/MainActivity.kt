@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: PokemonAdapter
+    private var menu: Menu? = null
     private var layoutManager: GridLayoutManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +38,6 @@ class MainActivity : AppCompatActivity() {
         adapter = PokemonAdapter(arrayListOf(), layoutManager)
         pokemonRecyclerView.adapter = adapter
 
-
         viewModel.getNationalDex().observe(this, Observer {
             it?.let {
                 adapter.apply {
@@ -49,7 +49,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_action_bar, menu)
+        this.menu = menu
+        menuInflater.inflate(R.menu.menu_action_bar, this.menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         R.id.aboutInfoMenuBarButton -> {
             val infoDialog = AlertDialog.Builder(this).create()
             infoDialog.apply {
-                title = "About"
+                title = getString(R.string.menu_about)
                 setMessage("It is pokedex project with list of pokemon and their details. It is Mateusz Cypel educational project")
                 setButton(AlertDialog.BUTTON_NEUTRAL, "OK") { dialog, _ ->
                     dialog.dismiss()
@@ -68,10 +69,13 @@ class MainActivity : AppCompatActivity() {
             true
         }
         R.id.switchLayoutMenuBarButton -> {
+            val menuItem: MenuItem? = menu?.findItem(R.id.switchLayoutMenuBarButton)
             if (layoutManager?.spanCount == 1) {
                 layoutManager?.spanCount = 3
+                menuItem?.icon = (getDrawable(R.drawable.main_list_icon))
             } else {
                 layoutManager?.spanCount = 1
+                menuItem?.icon = (getDrawable(R.drawable.main_grid_icon))
             }
             adapter.notifyItemRangeChanged(0, adapter.itemCount ?: 0)
             //change icon for appropriate next layout

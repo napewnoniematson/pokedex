@@ -3,16 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/aboutInfoMenuBarButton"
-        android:title="about"
-        android:icon="@drawable/ic_launcher_background"
+        android:id="@+id/switchLayoutMenuBarButton"
+        android:title="@string/menu_layout"
+        android:icon="@drawable/main_grid_icon"
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/switchLayoutMenuBarButton"
-        android:title="switch"
-        android:icon="@drawable/ic_launcher_background"
+        android:id="@+id/aboutInfoMenuBarButton"
+        android:title="@string/menu_about"
+        android:icon="@drawable/main_about_icon"
         app:showAsAction="ifRoom"/>
-
 
 </menu>

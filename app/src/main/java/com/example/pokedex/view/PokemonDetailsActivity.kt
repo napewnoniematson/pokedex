@@ -3,7 +3,6 @@ package com.example.pokedex.view
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.pokedex.R
@@ -31,8 +30,8 @@ class PokemonDetailsActivity : AppCompatActivity() {
             Glide
                 .with(this)
                 .load(imageUrl)
-                .override(108, 108)
-                .fitCenter()
+//                .override(108, 108)
+//                .fitCenter()
                 .into(pokemonDetailsImageView)
 
             viewModel = ViewModelProvider(
@@ -59,7 +58,8 @@ class PokemonDetailsActivity : AppCompatActivity() {
                     val engDesc = it.flavor_text_entries.filter {
                         flavorText -> flavorText.language.name == "en"
                     }
-                    pokemonDetailsDescriptionEditText.setText(engDesc[0].flavor_text.trim())
+                    val desc = engDesc[0].flavor_text.replace("\n", " ")
+                    pokemonDetailsDescriptionTextView.text = desc
                 }
             })
 
