@@ -30,8 +30,8 @@ class PokemonDetailsActivity : AppCompatActivity() {
             Glide
                 .with(this)
                 .load(imageUrl)
-                .override(108, 108)
-                .fitCenter()
+//                .override(108, 108)
+//                .fitCenter()
                 .into(pokemonDetailsImageView)
 
             viewModel = ViewModelProvider(

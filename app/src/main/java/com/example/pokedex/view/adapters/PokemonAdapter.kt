@@ -63,8 +63,8 @@ class PokemonAdapter(
             Glide
                 .with(holder.itemView.context)
                 .load(imageUrl)
-                .override(108, 108)
-                .fitCenter()
+//                .override(108, 108)
+//                .fitCenter()
                 .into(holder.itemView.pokemonItemImageView)
         } else {
             holder.itemView.setOnClickListener {
