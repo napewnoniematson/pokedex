@@ -19,6 +19,12 @@ Future improvement:
 * Data filtering
 * REFACTOR (w/ catching exceptions) and improvement layouts
 
+![alt text](screenshots/welcome.png "Welcome")
+![alt text](screenshots/main_list.png "Pokemon list")
+![alt text](screenshots/main_grid.png "Pokemon grid")
+![alt text](screenshots/main_about.png "About app")
+![alt text](screenshots/details.png "Pokemon details")
+
 REST API:
 * https://pokeapi.co/
 
