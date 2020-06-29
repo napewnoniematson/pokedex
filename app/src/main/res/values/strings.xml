@@ -16,5 +16,8 @@
     <string name="pokemon_stats_attack_points">ATK</string>
     <string name="pokemon_stats_default_value">0</string>
 
+    <string name="menu_about">About</string>
+    <string name="menu_layout">Grid/List</string>
+
 
 </resources>
